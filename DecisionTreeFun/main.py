@@ -1,4 +1,4 @@
-import math
+import random
 
 def main():
     header = ["level", "lang", "tweets", "phd", "interviewed_well"]
@@ -50,12 +50,17 @@ def main():
         ]
     ]
 
-def tdidt(intances, att_indexes, att_domains, class_index, header=None):
+def tdidt(instances, att_indexes, att_domains, class_index, header=None):
     # Basic Approach (uses recursion!):
 
     # At each step, pick an attribute ("attribute selection")
     att_index = select_attribute(instances, att_indexes, class_index)
+    # can't choose the same attribute twice in a branch!!
+    att_indexes.remove(att_index) # remember: Python is pass
+    # by object reference!! 
+
     # Partition data by attribute values ... this creates pairwise disjoint partitions
+    partition = partition_instances(instances, att_index, att_domains[att_index])
     # Repeat until one of the following occurs (base cases):
     # Partition has only class labels that are the same ... no clashes, make a leaf node
     # No more attributes to partition ... reached the end of a branch and there may be clashes, see options below
@@ -65,6 +70,8 @@ def select_attribute(instances, att_indexes, class_index):
     # random selection for now
     # TODO: replace with entropy-based attribute selection
     # task: return a random index in att_indexes
+    rand_index = random.randrange(0, len(att_indexes))
+    return att_indexes[rand_index]
 
 if __name__ == "__main__":
     main()
