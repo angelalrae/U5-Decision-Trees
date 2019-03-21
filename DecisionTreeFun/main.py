@@ -60,6 +60,18 @@ def main():
     class_index = len(header) - 1
     tree = tdidt(table, att_indexes, att_domains, class_index, header)
 
+    # Advice for starting PA6... finish DecisionTreeFun
+    # finish the tdidt() algorithm, starting with your base case 1
+    # start building your nested list that represents your tree
+    # do the bonus for PA6 which creates nice PDF visualizes of your
+    # nested lists that represent trees
+    # write a function tdidt_classifier() that takes a tree and
+    # an unseen instances and classifies the instance
+    # replace random selection with entropy-based selection
+    # check your tree built programmatically matches our "interview_tree"
+    # we built manually
+    # now start PA6 :) you're almost done
+
 def tdidt(instances, att_indexes, att_domains, class_index, header=None):
     # Basic Approach (uses recursion!):
 
@@ -74,9 +86,21 @@ def tdidt(instances, att_indexes, att_domains, class_index, header=None):
     partition = partition_instances(instances, att_index, att_domains[att_index])
     print(partition)
     # Repeat until one of the following occurs (base cases):
-    # Partition has only class labels that are the same ... no clashes, make a leaf node
-    # No more attributes to partition ... reached the end of a branch and there may be clashes, see options below
-    # No more instances to partition ... see options below
+
+    # CASE 1: Partition has only class labels that are the same ... no clashes, make a leaf node
+    # call a function that returns True if a part of a partition
+    # has all the same class label
+    # has_same_class_label()
+    # CASE 2: No more attributes to partition ... reached the end of a branch and there may be clashes, see options below
+    # if we are here, then case 1's Boolean Condition failed
+    # we have a mix class labels but no more attributes to split on
+    # handle clash with majority voting
+    # compute_partition_stats()
+    # CASE 3: No more instances to partition ... see options below
+    # "backtrack" to replace the attribute node with a leaf node
+    # can make use of compute_partition_stats() to find the class
+    # of the leaf node (majority voting)
+    # if none of these cases evaluate to true, then recurse!!
 
     return None
 
