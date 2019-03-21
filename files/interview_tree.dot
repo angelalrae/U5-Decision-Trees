@@ -1,0 +1,20 @@
+graph g {
+    rankdir=TB;
+    level [shape=box];
+    tweets [shape=box];
+    level -- tweets [label="Senior"];
+    true1 [label="True"]
+    false1 [label="False"]
+    tweets -- true1 [label="Yes"]
+    tweets -- false1 [label="No"]
+
+    true3 [label="True"]
+    level -- true3 [label="Mid"];
+
+    phd [shape=box];
+    level -- phd [label="Junior"];
+    true2 [label="True"]
+    false2 [label="False"]
+    phd -- false2 [label="Yes"]
+    phd -- true2 [label="No"]
+}
